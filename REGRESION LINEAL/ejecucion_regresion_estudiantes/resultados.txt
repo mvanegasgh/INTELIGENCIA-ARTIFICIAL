@@ -1,0 +1,121 @@
+============================================================
+ PASO 1: Carga e Inspección Inicial de Datos 
+============================================================
+Dataset cargado exitosamente.
+
+Dimensiones iniciales del dataset: 395 filas, 33 columnas.
+
+--- Primeras 5 filas ---
+  school sex  age address famsize  ...  health  absences  G1  G2  G3
+0     GP   F   18       U     GT3  ...       3         6   5   6   6
+1     GP   F   17       U     GT3  ...       3         4   5   5   6
+2     GP   F   15       U     LE3  ...       3        10   7   8  10
+3     GP   F   15       U     GT3  ...       5         2  15  14  15
+4     GP   F   16       U     GT3  ...       5         4   6  10  10
+
+[5 rows x 33 columns]
+
+--- Tipos de Datos por Columna ---
+school          str
+sex             str
+age           int64
+address         str
+famsize         str
+Pstatus         str
+Medu          int64
+Fedu          int64
+Mjob            str
+Fjob            str
+reason          str
+guardian        str
+traveltime    int64
+studytime     int64
+failures      int64
+schoolsup       str
+famsup          str
+paid            str
+activities      str
+nursery         str
+higher          str
+internet        str
+romantic        str
+famrel        int64
+freetime      int64
+goout         int64
+Dalc          int64
+Walc          int64
+health        int64
+absences      int64
+G1            int64
+G2            int64
+G3            int64
+dtype: object
+
+============================================================
+ PASO 2: Transformación de Variables Categóricas 
+============================================================
+Mapeo realizado en columna 'famsize' ('LE3': 0, 'GT3': 1).
+   famsize
+0        1
+1        1
+2        0
+3        1
+4        1
+
+============================================================
+ PASO 3: Análisis Estadístico y Limpieza de Datos 
+============================================================
+--- Resumen Estadístico de Variables Numéricas ---
+              age     famsize  ...          G2          G3
+count  395.000000  395.000000  ...  395.000000  395.000000
+mean    16.696203    0.711392  ...   10.713924   10.415190
+std      1.276043    0.453690  ...    3.761505    4.581443
+min     15.000000    0.000000  ...    0.000000    0.000000
+25%     16.000000    0.000000  ...    9.000000    8.000000
+50%     17.000000    1.000000  ...   11.000000   11.000000
+75%     18.000000    1.000000  ...   13.000000   14.000000
+max     22.000000    1.000000  ...   19.000000   20.000000
+
+[8 rows x 17 columns]
+
+--- Verificación de Valores Nulos ---
+No existen valores nulos en el dataset.
+
+Dimensiones tras filtrar atípicos (IQR): 232 filas.
+
+============================================================
+ PASO 4: Matriz de Correlación 
+============================================================
+Top 5 correlaciones con la nota final (G3):
+G3        1.000000
+G2        0.914328
+G1        0.848914
+Medu      0.202390
+Fedu      0.192441
+famrel    0.103303
+Name: G3, dtype: float64
+
+Gráfico 'matriz_correlacion.png' guardado con éxito.
+
+============================================================
+ PASO 5: Construcción y Entrenamiento del Modelo de Regresión Lineal 
+============================================================
+Modelo entrenado exitosamente.
+Intercepto ($w_0$): -1.2407
+Coeficientes ($w_i$):
+  - G1: 0.0834
+  - G2: 0.9993
+  - studytime: 0.0278
+  - failures: 0.0000
+  - absences: 0.0528
+
+============================================================
+ PASO 6: Evaluación del Modelo 
+============================================================
+Error Cuadrático Medio (MSE): 0.6588
+Raíz del Error Cuadrático Medio (RMSE): 0.8117
+Coeficiente de Determinación ($R^2$): 0.9368
+
+Gráfico 'predicciones_vs_reales.png' guardado con éxito.
+
+Proceso finalizado.
