@@ -1,0 +1,50 @@
+
+===== Base (128-64) =====
+Parámetros: 109,386
+Tiempo: 34.0 s
+Loss entrenamiento (época 10): 0.0186
+Loss validación (época 10):    0.1263
+Loss test: 0.1117 | Accuracy test: 97.37%
+
+===== Exp 1 (128-128-128-64) =====
+Parámetros: 142,410
+Tiempo: 37.7 s
+Loss entrenamiento (época 10): 0.0240
+Loss validación (época 10):    0.1202
+Loss test: 0.1064 | Accuracy test: 97.63%
+
+===== Exp 2 (16-8) =====
+Parámetros: 12,786
+Tiempo: 22.7 s
+Loss entrenamiento (época 10): 0.1583
+Loss validación (época 10):    0.1869
+Loss test: 0.1935 | Accuracy test: 94.57%
+
+===== Exp 3A (lr=0.5) =====
+Parámetros: 109,386
+Tiempo: 31.3 s
+Loss entrenamiento (época 10): 2.3399
+Loss validación (época 10):    2.3357
+Loss test: 2.3317 | Accuracy test: 11.37%
+
+===== Exp 3B (lr=0.00001) =====
+Parámetros: 109,386
+Tiempo: 34.2 s
+Loss entrenamiento (época 10): 0.3721
+Loss validación (época 10):    0.3426
+Loss test: 0.3445 | Accuracy test: 90.99%
+
+==========================================================================================
+Modelo                      Parámetros  Tiempo (s)  Loss train  Loss val  Acc test
+==========================================================================================
+Base (128-64)                  109,386        34.0      0.0186    0.1263    97.37%
+Exp 1 (128-128-128-64)         142,410        37.7      0.0240    0.1202    97.63%
+Exp 2 (16-8)                    12,786        22.7      0.1583    0.1869    94.57%
+Exp 3A (lr=0.5)                109,386        31.3      2.3399    2.3357    11.37%
+Exp 3B (lr=0.00001)            109,386        34.2      0.3721    0.3426    90.99%
+==========================================================================================
+
+Loss de entrenamiento por época, Exp 3A (lr=0.5):
+[12.5, 2.339, 2.34, 2.34, 2.34, 2.34, 2.34, 2.34, 2.34, 2.34]
+
+Gráficas guardadas: comparacion_perdida.png, comparacion_lr.png, comparacion_precision.png
