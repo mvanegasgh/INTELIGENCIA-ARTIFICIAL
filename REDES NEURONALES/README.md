@@ -24,6 +24,3 @@ Salida:  [4, 10, 64]
 Dimensiones conservadas: True
 ```
 
-## Una aclaración
-
-El análisis del punto 1 se apoya en la guía del curso y en el material de clase (entre otros, el caso de Chicago). El tamaño de la ventana y los tiempos de inferencia no los medí; habría que confirmarlos con datos reales del sensor.
