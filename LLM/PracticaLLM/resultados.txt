@@ -1,0 +1,36 @@
+============================================================
+EJEMPLO 1: DESVANECIMIENTO DE MEMORIA EN RNN
+============================================================
+Magnitud de actualización (gradiente) en token t=0:  0.00000000
+Magnitud de actualización (gradiente) en token t=50: 0.00000000
+Magnitud de actualización (gradiente) en token t=99: 1.37405467
+
+Conclusión: El gradiente en el paso t=0 es minúsculo en comparación con t=99.
+Esto demuestra matemáticamente por qué las RNN 'olvidan' el inicio de oraciones largas.
+
+============================================================
+EJEMPLO 2: ATENCIÓN EN PARALELO (TRANSFORMER)
+============================================================
+Ingresando un lote de dimensiones: torch.Size([32, 512, 768]) (Batch, Secuencia, D_Model)
+Ejecutando propagación hacia adelante (forward pass)...
+Salida obtenida con dimensiones:   torch.Size([32, 512, 768])
+
+Conclusión: El modelo procesó 32 secuencias de 512 tokens simultáneamente
+con una sola serie de operaciones matriciales, aprovechando la arquitectura GPU.
+Esta es la ventaja computacional del Transformer frente al procesamiento secuencial RNN.
+
+============================================================
+EJEMPLO 3: EFICIENCIA (FLASH-ATTENTION Y LORA)
+============================================================
+>> A) FlashAttention (PyTorch >= 2.0)
+La API 'scaled_dot_product_attention' ejecutó el algoritmo con éxito.
+En una GPU real, esto fusiona los kernels CUDA, evitando escribir y leer
+la inmensa matriz (1024x1024) en la lenta memoria global (HBM) de la tarjeta gráfica.
+
+>> B) Adaptación de Bajo Rango (LoRA)
+Parámetros a entrenar en Fine-Tuning Tradicional: 16,781,312
+Parámetros a entrenar usando LoRA (r=8):           65,536
+Reducción de parámetros actualizables:              99.6095%
+
+Conclusión: Con LoRA reducimos el esfuerzo computacional en más de un 99%,
+haciendo posible afinar LLMs gigantescos en laboratorios universitarios.
