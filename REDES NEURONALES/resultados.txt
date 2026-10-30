@@ -1,0 +1,3 @@
+Entrada: [4, 10, 64]
+Salida:  [4, 10, 64]
+Dimensiones conservadas: True

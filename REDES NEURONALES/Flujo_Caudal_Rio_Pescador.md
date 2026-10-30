@@ -1,0 +1,11 @@
+# Punto 1: Análisis y selección de arquitectura para el río Pescador
+
+Elegiría una red GRU. Todo parte de los datos: Un sensor que lee cada 10 minutos durante 3 años deja unos 157.680 registros de una sola variable, el caudal, ordenados en el tiempo. Es una secuencia continua y lo que se busca predecir es otro valor continuo (el caudal en t+1). En la tabla de soluciones de IA vista en clase, un problema así cae del lado de las redes recurrentes (RNN, LSTM); los Transformers aparecen asignados al lenguaje, que trabaja con tokens.
+
+Con ese volumen haría lo mismo que en el caso de Chicago que vimos en el material de clase  (predicción de pasajeros de tránsito, con los 56 días previos para anticipar los 14 siguientes): no meter la serie completa en el modelo, sino ventanas de lecturas pasadas para predecir la siguiente, de forma autorregresiva. El tamaño de la ventana dependería del ciclo que se quiera capturar, y eso lo tendría que confirmar con los datos. Además, 157.680 registros son pocos al lado de los conjuntos masivos de texto con los que la guía (sección 2.4) asocia el problema del cómputo secuencial de las recurrentes, así que esa limitación aquí no pesa.
+
+El Transformer lo descarto por costo: Su atención estándar usa memoria $O(N^2)$ (síntesis comparativa de la guía), y para una sola variable ese gasto no se justifica. Entre LSTM y GRU me quedo con la GRU. La LSTM usa tres compuertas y un estado de celda aparte (sección 1.4); la GRU junta memoria y estado oculto con solo dos compuertas, lo que reduce la carga paramétrica y el tiempo de convergencia (sección 1.5).
+
+La latencia apunta en la misma dirección. Según la ecuación de la GRU (sección 1.5), $h_t$ se calcula solo con $h_{t-1}$ y la lectura nueva $x_t$; cuando llega un dato basta un paso de la celda con el estado guardado, sin reprocesar el historial. Un Transformer, en cambio, tendría que calcular la atención entre todas las posiciones de la ventana (sección 3.2). Con lecturas cada 10 minutos hay margen de sobra, aunque el tiempo exacto habría que medirlo.
+
+Como la salida es un número continuo, se trata de un problema de regresión y la pérdida adecuada es el error cuadrático medio (mse), tal como se vio en la clase de Deep Learning.
