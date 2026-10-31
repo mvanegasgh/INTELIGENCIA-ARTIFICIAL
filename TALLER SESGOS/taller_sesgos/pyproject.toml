@@ -1,0 +1,21 @@
+[project]
+name = "taller-sesgos"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Milton Vanegas", email = "mvanegas_usistemas@intep.edu.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "matplot>=0.1.9",
+    "pandas>=3.1.0",
+    "seaborn>=0.13.2",
+]
+
+[project.scripts]
+taller-sesgos = "taller_sesgos:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
